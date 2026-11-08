@@ -51,9 +51,9 @@ function Drum({ open, current, onPick }: { open: boolean; current: number; onPic
     itemsRef.current.forEach((it, i) => {
       if (!it) return;
       const d = i - pos;
-      const ad = Math.min(Math.abs(d), 3);
-      it.style.transform = `rotateX(${-d * 22}deg) translateZ(${-ad * 6}px)`;
-      it.style.opacity = String(Math.max(0.15, 1 - ad * 0.32));
+      const ad = Math.min(Math.abs(d), 2);
+      it.style.transform = `rotateX(${-d * 38}deg)`;
+      it.style.opacity = String(Math.max(0, 1 - ad * 0.55));
     });
     setFocus(Math.round(pos));
   };
@@ -89,24 +89,20 @@ function Drum({ open, current, onPick }: { open: boolean; current: number; onPic
         if (e.key === "ArrowUp") { e.preventDefault(); goTo(Math.max(0, focus - 1)); }
       }}
     >
-      <div className="drum-window">
-        <div className="drum-list" ref={listRef} onScroll={onScroll}>
-          {CH.map((c, i) => (
-            <button
-              key={c.key}
-              ref={(n) => { itemsRef.current[i] = n; }}
-              type="button"
-              role="option"
-              aria-selected={i === current}
-              className={`drum-item${i === focus ? " on" : ""}`}
-              onClick={() => goTo(i)}
-            >
-              <span className="num">{c.num}</span> {c.name}
-            </button>
-          ))}
-        </div>
-        <div className="drum-shade" />
-        <div className="drum-lens" />
+      <div className="drum-list" ref={listRef} onScroll={onScroll}>
+        {CH.map((c, i) => (
+          <button
+            key={c.key}
+            ref={(n) => { itemsRef.current[i] = n; }}
+            type="button"
+            role="option"
+            aria-selected={i === current}
+            className={`drum-item${i === focus ? " on" : ""}`}
+            onClick={() => goTo(i)}
+          >
+            {c.name}
+          </button>
+        ))}
       </div>
     </div>
   );
