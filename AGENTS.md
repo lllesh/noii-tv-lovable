@@ -28,3 +28,5 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+- The TV frame lives in src/routes/index.tsx with plain CSS in src/tv.css (ported 1:1 from the original static site); channels are a single CH array — edit it to add/remove channels.
