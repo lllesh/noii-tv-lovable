@@ -133,7 +133,10 @@ function Tv() {
 
   useEffect(() => {
     try { setOsd(localStorage.getItem("osd") !== "0"); } catch { /* */ }
-    const close = () => setOpen(false);
+    const close = (e: MouseEvent) => {
+      if (e.target instanceof Element && e.target.closest(".topbar-center")) return;
+      setOpen(false);
+    };
     const key = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
       const n = Number(e.key);
