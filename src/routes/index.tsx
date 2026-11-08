@@ -129,7 +129,7 @@ function Tv() {
   const [cur, setCur] = useState(1);
   const [open, setOpen] = useState(false);
   const [osd, setOsd] = useState(true);
-  const ch = CH[cur];
+  const ch = CH[cur] ?? CH[1];
 
   useEffect(() => {
     try { setOsd(localStorage.getItem("osd") !== "0"); } catch { /* */ }
